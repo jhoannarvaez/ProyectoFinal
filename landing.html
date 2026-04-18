@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honda Motos - Acelera tu Independencia</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;0,900;1,400&family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --honda-red: #E4000F;
+            --honda-red-hover: #C2000D;
+            --dark-grey: #1C1C1C;
+            --medium-grey: #333333;
+            --light-grey: #F4F4F6;
+            --silver: #E0E0E0;
+            --white: #FFFFFF;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Resets & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-grey);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            height: 45px;
+            width: auto;
+        }
+
+        .btn-outline {
+            text-decoration: none;
+            color: var(--honda-red);
+            font-weight: 600;
+            border: 2px solid var(--honda-red);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        .btn-outline:hover {
+            background: var(--honda-red);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 12rem 0 8rem 0;
+            background-image: url('banner.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(228,0,15,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 3rem;
+            border-radius: 16px;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero-title, .hero-slogan, .hero .btn-primary {
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .hero-title {
+            font-size: 4.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            color: var(--dark-grey);
+            text-transform: uppercase;
+        }
+
+        .hero-title span {
+            color: var(--honda-red);
+            display: block;
+        }
+
+        .hero-slogan {
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--medium-grey);
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--honda-red);
+            color: var(--white);
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(228,0,15,0.3);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(228,0,15,0.4);
+            background: var(--honda-red-hover);
+        }
+
+        /* Value Prop */
+        .value-prop {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .model-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid var(--silver);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--honda-red);
+        }
+
+        .model-img-wrapper {
+            background-color: var(--light-grey);
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow: hidden;
+        }
+
+        .model-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .model-card:hover .model-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .model-info {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .model-title {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark-grey);
+        }
+
+        .model-specs {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .model-specs li {
+            margin-bottom: 0.8rem;
+            color: var(--medium-grey);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .model-specs li i {
+            color: var(--honda-red);
+            width: 20px;
+            text-align: center;
+        }
+
+        .btn-model {
+            display: inline-block;
+            text-align: center;
+            background: transparent;
+            color: var(--honda-red);
+            border: 2px solid var(--honda-red);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn-model:hover {
+            background: var(--honda-red);
+            color: var(--white);
+        }
+
+        .feature-text {
+            color: var(--medium-grey);
+            line-height: 1.6;
+        }
+
+        /* Form Section */
+        .capture-section {
+            padding: 6rem 0;
+            background: var(--dark-grey);
+            color: var(--white);
+            position: relative;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            color: var(--dark-grey);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--honda-red);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--medium-grey);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--silver);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--light-grey);
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--honda-red);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(228,0,15,0.1);
+        }
+
+        /* Success Box */
+        .success-state {
+            display: none;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .success-icon {
+            font-size: 5rem;
+            color: #27ae60;
+            margin-bottom: 1.5rem;
+        }
+        .success-state h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            background: var(--dark-grey);
+            color: var(--silver);
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .hero-slogan { font-size: 1.2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-container { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav>
+        <div class="container nav-content">
+            <img src="logo.png" alt="Honda Logo" class="nav-logo" onerror="this.src=''; this.alt='HONDA';">
+            <a href="#contacto" class="btn-outline">Ver Modelos</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Domina tu camino.<br><span>Encuentra tu Honda.</span></h1>
+            <p class="hero-slogan">"No solo llegas más rápido. Llegas siendo tú."</p>
+            <a href="#contacto" class="btn-primary">Quiero más información <i class="fa-solid fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Modelos Destacados -->
+    <section class="value-prop" id="modelos">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto; margin-bottom: 2rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Nuestros Modelos Destacados</h2>
+                <p class="feature-text">Encuentra el balance perfecto entre diseño, potencia y tecnología. Selecciona tu favorita a continuación.</p>
+            </div>
+            
+            <div class="models-grid">
+                <!-- XR190L -->
+                <div class="model-card">
+                    <div class="model-img-wrapper">
+                        <img src="xr190l.png" alt="Honda XR190L">
+                    </div>
+                    <div class="model-info">
+                        <h3 class="model-title">XR190L</h3>
+                        <ul class="model-specs">
+                            <li><i class="fa-solid fa-motorcycle"></i> <strong>Cilindraje:</strong> 184 cc</li>
+                            <li><i class="fa-solid fa-weight-scale"></i> <strong>Peso:</strong> 146 kg</li>
+                            <li><i class="fa-solid fa-tag"></i> <strong>Precio:</strong> $11.450.000</li>
+                        </ul>
+                        <a href="#contacto" class="btn-model">Me interesa este modelo</a>
+                    </div>
+                </div>
+
+                <!-- NAVI -->
+                <div class="model-card">
+                    <div class="model-img-wrapper">
+                        <img src="navi.png" alt="Honda NAVI" onerror="this.src=''; this.alt='[NAVI Imagen Pendiente]';">
+                    </div>
+                    <div class="model-info">
+                        <h3 class="model-title">NAVI</h3>
+                        <ul class="model-specs">
+                            <li><i class="fa-solid fa-motorcycle"></i> <strong>Cilindraje:</strong> 109 cc</li>
+                            <li><i class="fa-solid fa-weight-scale"></i> <strong>Peso:</strong> 101 kg</li>
+                            <li><i class="fa-solid fa-tag"></i> <strong>Precio:</strong> $6.990.000</li>
+                        </ul>
+                        <a href="#contacto" class="btn-model">Me interesa este modelo</a>
+                    </div>
+                </div>
+
+                <!-- CB125F -->
+                <div class="model-card">
+                    <div class="model-img-wrapper">
+                        <img src="cb125f.png" alt="Honda CB125F" onerror="this.src=''; this.alt='[CB125F Imagen Pendiente]';">
+                    </div>
+                    <div class="model-info">
+                        <h3 class="model-title">CB125F</h3>
+                        <ul class="model-specs">
+                            <li><i class="fa-solid fa-motorcycle"></i> <strong>Cilindraje:</strong> 124 cc</li>
+                            <li><i class="fa-solid fa-weight-scale"></i> <strong>Peso:</strong> 117 kg</li>
+                            <li><i class="fa-solid fa-tag"></i> <strong>Precio:</strong> $7.450.000</li>
+                        </ul>
+                        <a href="#contacto" class="btn-model">Me interesa este modelo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario / Captura -->
+    <section id="contacto" class="capture-section">
+        <div class="container">
+            <div class="form-container" id="form-wrapper">
+                <div class="form-header">
+                    <h2>Da el primer paso</h2>
+                    <p>Déjanos tus datos y un especialista te contactará.</p>
+                </div>
+
+                <form id="landingForm">
+                    <div class="form-group">
+                        <label for="nombre"><i class="fa-regular fa-user"></i> Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Andrés Gómez" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email"><i class="fa-regular fa-envelope"></i> Correo Electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono"><i class="fa-brands fa-whatsapp"></i> WhatsApp/Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="Ej: 310 000 0000" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modelo"><i class="fa-solid fa-motorcycle"></i> Modelo de Interés</label>
+                        <select id="modelo" required>
+                            <option value="" disabled selected>Selecciona tu moto ideal...</option>
+                            <option value="CB125F">CB125F</option>
+                            <option value="XR190L">XR190L</option>
+                            <option value="NAVI">NAVI</option>
+                            <option value="XRE300">XRE300</option>
+                            <option value="CB500X">CB500X</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="estilo"><i class="fa-solid fa-road"></i> Estilo de Vida</label>
+                            <select id="estilo" required>
+                                <option value="" disabled selected>Tu ambiente es...</option>
+                                <option value="Urbano">Urbano</option>
+                                <option value="Aventura">Aventura</option>
+                                <option value="Trabajo">Trabajo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="prioridad"><i class="fa-solid fa-bullseye"></i> Prioridad al comprar</label>
+                            <select id="prioridad" required>
+                                <option value="" disabled selected>Te importa más...</option>
+                                <option value="Precio">Precio</option>
+                                <option value="Potencia">Potencia</option>
+                                <option value="Respaldo">Respaldo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top:1rem;">
+                        Enviar Solicitud <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Panel de éxito -->
+            <div class="form-container success-state" id="success-message">
+                <i class="fa-solid fa-circle-check success-icon"></i>
+                <h2>¡Gracias!</h2>
+                <p>Tu solicitud ha sido recibida con éxito.<br>Pronto nos comunicaremos contigo para asesorarte personalmente.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Honda Motos. Desarrollado para Landing Corporativo CRM.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica de Enlace a CRM (Mismo LocalStorage que index.html) -->
+    <script>
+        document.getElementById('landingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 1. Recibir valores
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const modelo = document.getElementById('modelo').value;
+            const estilo = document.getElementById('estilo').value;
+            const prioridad = document.getElementById('prioridad').value;
+            
+            // 2. Inteligencia de CRM: Calcular temperatura basado en campos estratégicos
+            let puntajeCalculado = 50; 
+            if (estilo === 'Aventura') puntajeCalculado += 15;
+            if (estilo === 'Trabajo') puntajeCalculado += 10;
+            if (prioridad === 'Respaldo') puntajeCalculado += 25; 
+            if (prioridad === 'Potencia') puntajeCalculado += 20;
+
+            if (puntajeCalculado > 100) puntajeCalculado = 100;
+
+            // 3. Estructura compatible con CRM Local
+            const nuevoLead = {
+                nombre: nombre,
+                email: email + " | Tel: " + telefono, // Mapeo doble visible
+                modelo: modelo,
+                puntaje: puntajeCalculado
+            };
+
+            // 4. Conexión con la Base de datos local compartida (hondaLeads)
+            let baseLeads = [];
+            const dataAnterior = localStorage.getItem('hondaLeads');
+            if (dataAnterior) {
+                baseLeads = JSON.parse(dataAnterior);
+            }
+            
+            // Inyectar primero
+            baseLeads.unshift(nuevoLead);
+            localStorage.setItem('hondaLeads', JSON.stringify(baseLeads));
+
+            // 5. Retroalimentación visual
+            document.getElementById('form-wrapper').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

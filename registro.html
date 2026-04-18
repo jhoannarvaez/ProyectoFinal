@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Asesoría - Honda Motos</title>
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Estilos compartidos -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 1rem;
+            background-image: radial-gradient(circle at top right, rgba(228, 0, 15, 0.05), transparent 40%);
+        }
+        
+        .landing-card {
+            max-width: 500px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border-top: 4px solid var(--honda-red);
+            text-align: center;
+        }
+
+        .landing-logo {
+            max-width: 160px;
+            margin-bottom: 0.5rem;
+        }
+
+        .landing-slogan {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .form-heading {
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-align: left;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        /* Message Success */
+        .success-box {
+            display: none;
+            text-align: center;
+            padding: 2rem 0;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #27ae60;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-title {
+            font-size: 1.8rem;
+            color: var(--dark-grey);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .success-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="landing-card">
+        <!-- Logo Header -->
+        <img src="logo.png" alt="Honda Logo" class="landing-logo">
+        <p class="landing-slogan">"No solo llegas más rápido. Llegas siendo tú"</p>
+
+        <!-- Contenedor del Formulario -->
+        <div id="form-container">
+            <h2 class="form-heading">Déjanos tus datos y acelera tu sueño</h2>
+            
+            <form id="clientForm" class="text-left">
+                <div class="form-group">
+                    <label for="nombre"><i class="fa-regular fa-user"></i> Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email"><i class="fa-regular fa-envelope"></i> Correo Electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Ej. hola@tucorreo.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono"><i class="fa-brands fa-whatsapp"></i> WhatsApp / Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Ej. 310 000 0000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="modelo"><i class="fa-solid fa-motorcycle"></i> Modelo de Interés</label>
+                    <div class="select-wrapper">
+                        <select id="modelo" required>
+                            <option value="" disabled selected>Elige tu moto ideal...</option>
+                            <option value="CB125F">CB125F</option>
+                            <option value="XR190L">XR190L</option>
+                            <option value="NAVI">NAVI</option>
+                            <option value="XRE300">XRE300</option>
+                            <option value="CB500X">CB500X</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="estilo"><i class="fa-solid fa-road"></i> Estilo de Vida</label>
+                        <div class="select-wrapper">
+                            <select id="estilo" required>
+                                <option value="" disabled selected>Selecciona...</option>
+                                <option value="Urbano">Urbano</option>
+                                <option value="Aventura">Aventura</option>
+                                <option value="Trabajo">Trabajo</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prioridad"><i class="fa-solid fa-bullseye"></i> Prioridad</label>
+                        <div class="select-wrapper">
+                            <select id="prioridad" required>
+                                <option value="" disabled selected>Lo más vital...</option>
+                                <option value="Precio">Precio</option>
+                                <option value="Potencia">Potencia</option>
+                                <option value="Respaldo">Respaldo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Enviar Solicitud <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+
+        <!-- Mensaje de Éxito Oculto -->
+        <div id="success-message" class="success-box">
+            <i class="fa-solid fa-circle-check success-icon"></i>
+            <h2 class="success-title">¡Gracias!</h2>
+            <p class="success-text">Tu solicitud ha sido recibida con éxito.<br>Pronto uno de nuestros asesores especializados se comunicará contigo para ayudarte a dar el siguiente paso.</p>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('clientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 1. Recibir valores del formulario
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const modelo = document.getElementById('modelo').value;
+            const estilo = document.getElementById('estilo').value;
+            const prioridad = document.getElementById('prioridad').value;
+            
+            // 2. Lógica interna para calificar al Lead (Puntaje dinámico) basado en su perfil
+            let puntajeCalculado = 50; // Puntaje base
+            if (estilo === 'Aventura') puntajeCalculado += 15;
+            if (estilo === 'Trabajo') puntajeCalculado += 10;
+            if (prioridad === 'Respaldo') puntajeCalculado += 25; // Alta intención de compra a largo plazo
+            if (prioridad === 'Potencia') puntajeCalculado += 20;
+
+            // Garantizar tope máximo de 100
+            if (puntajeCalculado > 100) puntajeCalculado = 100;
+
+            // 3. Crear Estructura de Lead Compatible con el CRM 'index.html'
+            const nuevoLead = {
+                nombre: nombre,
+                email: email + " | Tel: " + telefono, // Mostramos en el Dashboard el email y el contacto telefónico juntos
+                modelo: modelo,
+                puntaje: puntajeCalculado
+            };
+
+            // 4. Guardar en el LocalStorage
+            let appLeads = [];
+            const storedLeads = localStorage.getItem('hondaLeads');
+            if (storedLeads) {
+                appLeads = JSON.parse(storedLeads);
+            }
+            
+            // Agregar al inicio
+            appLeads.unshift(nuevoLead);
+            localStorage.setItem('hondaLeads', JSON.stringify(appLeads));
+
+            // 5. Ocultar Formulario y Mostrar Agradecimiento
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

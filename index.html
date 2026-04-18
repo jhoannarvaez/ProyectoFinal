@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honda Motos - CRM de Leads</title>
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Estilos Personalizados -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Encabezado Premium -->
+    <header class="header-premium">
+        <div class="container header-content">
+            <div class="brand-container">
+                <img src="logo.png" alt="Honda CRM Logo" class="brand-logo">
+                <p class="brand-slogan">"No solo llegas más rápido. Llegas siendo tú"</p>
+            </div>
+            <nav class="nav-links">
+                <a href="#dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="#registro"><i class="fa-solid fa-user-plus"></i> Nuevo Lead</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container main-grid">
+        
+        <!-- Panel Izquierdo: Formularios y Gráfico -->
+        <div class="left-panel">
+            
+            <!-- Tarjeta de Registro -->
+            <section id="registro" class="card form-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-pen-to-square"></i> Registrar Nuevo Lead</h2>
+                    <p>Ingresa un prospecto para el embudo de ventas</p>
+                </div>
+                <form id="leadForm" class="lead-form">
+                    <div class="form-group">
+                        <label for="nombre"><i class="fa-regular fa-user"></i> Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fa-regular fa-envelope"></i> Correo Electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="Ej. juan@correo.com" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modelo"><i class="fa-solid fa-motorcycle"></i> Modelo de Interés</label>
+                            <div class="select-wrapper">
+                                <select id="modelo" name="modelo" required>
+                                    <option value="" disabled selected>Selecciona un modelo...</option>
+                                    <option value="CB125F">CB125F</option>
+                                    <option value="XR190L">XR190L</option>
+                                    <option value="NAVI">NAVI</option>
+                                    <option value="XRE300">XRE300</option>
+                                    <option value="CB500X">CB500X</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="puntaje"><i class="fa-solid fa-star"></i> Puntaje (1-100)</label>
+                            <input type="number" id="puntaje" name="puntaje" min="1" max="100" placeholder="Ej. 85" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Guardar Lead <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </section>
+
+            <!-- Tarjeta Gráfico -->
+            <section id="dashboard" class="card chart-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-chart-line"></i> Análisis de Segmentos</h2>
+                    <p>Distribución de interés por modelo</p>
+                </div>
+                <div class="chart-container" id="dashboard-metrics" style="height: auto; flex-direction: column;">
+                    <!-- Métricas Térmicas -->
+                    <div class="temperature-metrics">
+                        <div class="temp-box hot"><i class="fa-solid fa-fire"></i> <span id="hot-count">0</span><div style="font-size: 0.8rem; font-weight: 400">Hot Leads</div></div>
+                        <div class="temp-box warm"><i class="fa-solid fa-temperature-half"></i> <span id="warm-count">0</span><div style="font-size: 0.8rem; font-weight: 400">Warm Leads</div></div>
+                        <div class="temp-box cold"><i class="fa-solid fa-snowflake"></i> <span id="cold-count">0</span><div style="font-size: 0.8rem; font-weight: 400">Cold Leads</div></div>
+                    </div>
+
+                    <!-- Barras de progreso -->
+                    <div class="models-progress" id="models-progress">
+                        <!-- Generado por JS -->
+                    </div>
+
+                    <!-- Cuadro de Acción / Insight -->
+                    <div class="insight-box" id="insight-box">
+                        <h4><i class="fa-solid fa-lightbulb"></i> Siguiente acción recomendada</h4>
+                        <p id="insight-text">Calculando...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Panel Derecho: Tabla de Leads y QR -->
+        <div class="right-panel">
+            
+            <!-- Tarjeta de Prioridades -->
+            <section class="card table-card">
+                <div class="card-header table-header">
+                    <div>
+                        <h2><i class="fa-solid fa-ranking-star"></i> Leads Prioritarios</h2>
+                        <p>Ordenados por intención de compra</p>
+                    </div>
+                    <div class="badge">Total: <span id="totalLeads">0</span></div>
+                </div>
+                <div class="table-container">
+                    <table id="leadsTable">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Modelo</th>
+                                <th>Puntaje</th>
+                                <th><i class="fa-solid fa-bolt"></i> Nivel</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leadsTableBody">
+                            <!-- Inyectado por JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Tarjeta Actividad Reciente -->
+            <section class="card activity-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-clock-rotate-left"></i> Actividad Reciente</h2>
+                    <p>Últimos registros ingresados al CRM</p>
+                </div>
+                <div class="activity-feed" id="activity-feed">
+                    <p class="empty-feed">Esperando nuevos leads...</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Scripts CDN -->
+    
+    <!-- Scripts Locales -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
